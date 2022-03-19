@@ -1,0 +1,25 @@
+.card{
+	display: block;
+	position: relative;
+	padding: 30px;
+	border-radius: $border-radius;
+	border: 2px solid $colour-borders;
+	.card__title{
+		display: block;
+		position: absolute;
+		top: -10px;
+		left: 20px;
+		background-color: white;
+		font-size: 18px;
+		line-height: 1.1em;
+		font-weight: bold;
+		color: darken($colour-borders, 50%);
+		padding: 0 10px;
+		width: auto;
+		max-width: calc(100% - 40px);
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}

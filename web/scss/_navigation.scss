@@ -1,0 +1,88 @@
+.navbar{
+	display: block;
+	position: relative;
+	width: 100%;
+	background-color: white;
+	border-bottom: 2px solid $colour-borders;
+}
+.navbar__structure{
+	display: grid;
+	position: relative;
+	width: 100%;
+	max-width: 1320px;
+	margin-left: auto;
+	margin-right: auto;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-column-gap: 30px;
+	align-items: center;
+}
+.navbar__logo{
+	display: block;
+	position: relative;
+	img{
+		display: block;
+		position: relative;
+		height: 100px;
+		padding: 15px 0;
+	}
+}
+.navbar__info{
+	display: block;
+	position: relative;
+	width: 100%;
+	min-width: 0;
+	span{
+		display: block;
+		position: relative;
+		text-align: center;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 20px;
+		line-height: 1.1em;
+		font-weight: bold;
+	}
+}
+.navbar__actions{
+	justify-self: end;
+	display: flex;
+	position: relative;
+	gap:10px;
+	a{
+		display: block;
+		position: relative;
+		width: 60px;
+		height: 60px;
+		border-radius: $border-radius;
+		background-color: $colour-primary;
+		outline: 2px solid transparent!important;
+		outline-offset: 2px!important;
+		transition-duration: $transition-duration;
+
+		i{
+			display: block;
+			position: absolute;
+			font-size: 30px;
+			line-height: 30px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			color: white;
+		}
+
+		&:hover{
+			background-color: darken($colour-primary, 5%);
+			border-color: darken($colour-primary, 5%);
+			color: white;
+		}
+		&:active{
+			background-color: darken($colour-primary, 10%);
+			border-color: darken($colour-primary, 10%);
+		}
+		&:focus{
+			outline: 2px solid transparentize($colour-primary, 0.5)!important;
+			outline-offset: 2px!important;
+		}
+	}
+}

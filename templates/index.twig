@@ -1,0 +1,72 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "Home" %}
+{# set backLink = "/" #}
+
+{% block body %}
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div class="card">
+					<div class="card__title">Customer</div>
+					<a href="/create-customer" class="button button--primary button--fw">Create a new Customer</a>
+					<form class="process-form mt-5">
+						<input type="hidden" name="action" value="customer-search-email" />
+						<div class="form-group">
+							<label>Find Customer by Email Address</label>
+							<input type="email" class="form-control" name="email_address" />
+							<div class="form-error">
+								This is error text.
+							</div>
+							<div class="form-help">
+								Enter the customer's email address.
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="button" type="submit">Find</button>
+						</div>
+					</form>
+					<form class="process-form mt-5">
+						<input type="hidden" name="action" value="customer-search-phone" />
+						<div class="form-group">
+							<label>Find Customer by Phone Number</label>
+							<input type="tel" class="form-control" name="phone_number" />
+							<div class="form-error">
+								This is error text.
+							</div>
+							<div class="form-help">
+								Please enter the customer's phone number starting with 0 and containing no spaces. <br />For example: 07123456789
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="button" type="submit">Find</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card">
+					<div class="card__title">Bookings</div>
+					<p>To create a new Booking, first find the Customer account.</p>
+					<form>
+						<div class="form-group">
+							<label>Find Booking</label>
+							<input type="text" class="form-control" />
+							<div class="form-error">
+								This is error text.
+							</div>
+							<div class="form-help">
+								Enter the unique Booking Reference Number.
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="button" type="submit">Find</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

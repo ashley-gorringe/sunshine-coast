@@ -1,0 +1,40 @@
+{% set cacheVersion = "d1" %}
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/css/base.min.css?v={{cacheVersion}}">
+        <title>SC Hotel Database - {{pageTitle}}</title>
+	</head>
+	<body>
+		<nav class="navbar">
+			<div class="navbar__structure">
+				<div class="navbar__logo">
+					<a href="/">
+					<img src="/assets/logo.svg" alt="Sunshine Coast Logo." />
+					</a>
+				</div>
+				<div class="navbar__info">
+					<span>{{pageTitle}}</span>
+				</div>
+				<div class="navbar__actions">
+					{% if backLink is defined %}
+					<a href="{{backLink}}"><i class="fas fa-long-arrow-alt-left"></i></a>
+					{% endif %}
+					<a href="/"><i class="fas fa-home"></i></a>
+				</div>
+			</div>
+		</nav>
+    	{% block body %}{% endblock %}
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/sweetalert.min.js"></script>
+        <script src="/js/scripts.js?v={{cacheVersion}}"></script>
+	</body>
+</html>

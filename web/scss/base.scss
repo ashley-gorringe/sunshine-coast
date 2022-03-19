@@ -1,0 +1,27 @@
+$colour-primary: #FFAA02;
+$colour-borders: #E3E3E3;
+$colour-dark: #333333;
+$colour-danger: #D00000;
+
+$border-radius: 5px;
+
+$transition-duration: 0.15s;
+
+@import 'reboot';
+@import 'grid';
+@import 'utilities';
+
+@import 'typography';
+@import 'navigation';
+@import 'sections';
+//@import 'footer';
+@import 'controls';
+
+//@import 'plugins/sweetalert';
+@import 'plugins/fontawesome';
+
+@import 'components/cards';
+
+.container--narrow{
+	max-width: 700px;
+}
