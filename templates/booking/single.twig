@@ -1,0 +1,103 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "Booking - " ~ customer.first_name ~ " " ~ customer.last_name ~ " - #" ~ booking.booking_id %}
+{% set backLink = "/customers/"~ customer.customer_id %}
+
+{% block body %}
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label>Customer</label>
+							<div class="form-readout">
+								{{customer.first_name}} {{customer.last_name}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label>Start Date</label>
+							<div class="form-readout">
+								{{booking.start_date}}
+							</div>
+						</div>
+						<div class="form-group">
+							<label>End Date</label>
+							<div class="form-readout">
+								{{booking.end_date}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card__title">Rooms</div>
+							<div class="table table--rooms">
+								<div class="head-row">
+									<span>Room No.</span>
+									<span>Room Type</span>
+									<span>Price Per Night</span>
+								</div>
+								{% for room in rooms %}
+								<div class="data-row">
+									<span>{{room.room_number}}</span>
+									<span>{{room.room_type}}</span>
+									<span>£{{room.room_price|number_format(2,'.')}}</span>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card">
+					<div class="card__title">Extras</div>
+					<a href="#" class="button button--primary button--fw">Add an Extra</a>
+					<p class="mt-5 text-center">There are currently no extras on this booking.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="divider">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label>Rooms Price</label>
+							<div class="form-readout">
+								£{{booking.rooms_price|number_format(2,'.')}}
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Extras Price</label>
+							<div class="form-readout">
+								£{{booking.extras_price|number_format(2,'.')}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label>Total Price</label>
+							<div class="form-readout">
+								£{{booking.total_price|number_format(2,'.')}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

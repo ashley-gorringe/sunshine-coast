@@ -78,7 +78,7 @@
 	color: $colour-danger;
 }
 select{
-  	background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 90% 50%;
+  	background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat calc(100% - 10px) 50%;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -88,12 +88,13 @@ select{
 	display: block;
 	position: relative;
 	width: 100%;
+	min-height: 48px;
 	margin: 0;
 	border: 2px solid darken($colour-borders,10%);
 	border-radius: $border-radius;
 	padding: 12px 16px;
 	font-size: 16px;
-	line-height: 16px;
+	line-height: 1.1em;
 	outline: 2px solid transparent!important;
 	outline-offset: 2px!important;
 	transition-duration: $transition-duration;
@@ -102,6 +103,13 @@ select{
 	}
 	&::-moz-placeholder{
 		opacity: 0.5;
+	}
+	&:disabled{
+		background-color: lighten($colour-borders,5%);
+		border-color: darken($colour-borders,10%)!important;
+		&:hover{
+			cursor: not-allowed;
+		}
 	}
 
 	&:hover{
@@ -137,4 +145,10 @@ select{
 
 .form-control.invalid + .form-error{
 	display: block;
+}
+
+.flatpickr-day.selected{
+	background-color: $colour-primary!important;
+	border-radius: $border-radius!important;
+	border-color: darken($colour-primary, 10%)!important;
 }

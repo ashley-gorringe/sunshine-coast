@@ -16,6 +16,14 @@ Route::add('/customers/([0-9a-zA-Z]*)/create-booking', function($id) {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/create.php';
 });
 
+Route::add('/bookings/([0-9a-zA-Z]*)', function($id) {
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/single.php';
+});
+
+Route::add('/rooms.json', function() {
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/api/rooms.php';
+});
+
 Route::pathNotFound(function() {
   header('HTTP/1.0 404 Not Found');
   echo $GLOBALS['twig']->render('404.twig');

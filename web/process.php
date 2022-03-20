@@ -26,6 +26,10 @@ if(empty($_POST['action'])){
 			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/customer-search-phone.php';
 			break;
 
+		case 'booking-create':
+			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/booking-create.php';
+			break;
+
 		default:
 		$response->status = 'error';
 		$response->message = 'Action is not valid.';

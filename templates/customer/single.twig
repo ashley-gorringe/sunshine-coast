@@ -1,7 +1,7 @@
 {% extends "_base.twig" %}
 
 {% set pageTitle = "Customer - " ~ customer.first_name ~ " " ~ customer.last_name %}
-{% set backLink = "/" %}
+{# set backLink = "/" #}
 
 {% block body %}
 <section>
@@ -99,7 +99,24 @@
 				<div class="card">
 					<div class="card__title">Bookings</div>
 					<a href="/customers/{{customer.customer_id}}/create-booking" class="button button--primary button--fw">Create a Booking</a>
+					{% if bookings %}
+					<div class="table table--bookings mt-5">
+						<div class="head-row">
+							<span>Start Date</span>
+							<span>Last Date</span>
+							<span>Total Price</span>
+						</div>
+						{% for booking in bookings %}
+						<a class="link-row" href="/bookings/{{booking.booking_id}}">
+							<span>{{booking.start_date}}</span>
+							<span>{{booking.end_date}}</span>
+							<span>£{{booking.total_price|number_format(2,'.')}}</span>
+						</a>
+						{% endfor %}
+					</div>
+					{% else %}
 					<p class="mt-5 text-center">There are currently no bookings for this customer.</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,26 @@
+$("#startDate").flatpickr({
+	minDate: "today",
+	altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+});
+$("#startDate").on('change',function(event){
+	event.preventDefault();
+	var startDate = new Date($('#startDate').val());
+	startDate.setDate(startDate.getDate() + 1);
+	var minEndDate = moment(startDate).format('YYYY-MM-DD');
+	console.log(minEndDate);
+
+	$('#endDate').prop('disabled', false);
+	$('#endDate').val('');
+	$("#endDate").flatpickr({
+		minDate: minEndDate,
+		altInput: true,
+    	altFormat: "F j, Y",
+    	dateFormat: "Y-m-d",
+	});
+});
+
 $( document ).on('submit','.process-form',function(event){
     console.log( $( this ).serialize() );
     event.preventDefault();
@@ -50,4 +73,29 @@ $( document ).on('submit','.process-form',function(event){
             }
         }
     });
+});
+$('#addRoom').click(function(event){
+	event.preventDefault();
+	$.getJSON('/rooms.json',function(data){
+		var items = '';
+		$.each(data,function(key, value){
+			//console.log(value['room_number']);
+			if(value['wheelchair_access'] == 1){
+				var wheelchair = ' - Wheelchair';
+			}else{
+				var wheelchair = '';
+			}
+			items += '<option value="'+value['room_id']+'">'+value['room_number']+' - '+value['room_type']+wheelchair;
+		});
+
+		$('#rooms').append(`
+			<div class="form-group">
+				<label>Select Room</label>
+				<select class="form-control" name="rooms[]">
+				<option value="">Please Select</option>
+				`+items+`
+				</select>
+			</div>
+			`);
+	});
 });

@@ -1,0 +1,96 @@
+.table{
+	display: block;
+	position: relative;
+	width: 100%;
+
+	.head-row{
+		display: grid;
+		grid-column-gap: 15px;
+		padding: 0 15px;
+		margin-bottom: 5px;
+		span{
+			display: block;
+			position: relative;
+			font-size: 16px;
+			line-height: 1.1em;
+			font-weight: bold;
+			&:last-child{
+				text-align: right;
+			}
+		}
+	}
+	.link-row{
+		display: grid;
+		grid-column-gap: 15px;
+		padding: 15px;
+		background-color: lighten($colour-borders, 5%);
+		border: 2px solid $colour-borders;
+		border-radius: $border-radius;
+		font-size: 16px;
+		line-height: 16px;
+		color: $colour-dark;
+		text-decoration: none;
+		outline: 2px solid transparent!important;
+		outline-offset: 2px!important;
+		transition-duration: $transition-duration;
+		margin-bottom: 5px;
+		&:last-child{
+			margin-bottom: 0;
+		}
+
+		&:hover{
+			background-color: darken($colour-borders, 5%);
+			border-color: darken($colour-borders, 5%);
+			color: $colour-dark;
+		}
+		&:active{
+			background-color: darken($colour-borders, 10%);
+			border-color: darken($colour-borders, 10%);
+		}
+		&:focus{
+			outline: 2px solid transparentize($colour-borders, 0.5)!important;
+			outline-offset: 2px!important;
+		}
+
+		span{
+			display: block;
+			position: relative;
+			font-size: 16px;
+			line-height: 1.1em;
+			&:last-child{
+				text-align: right;
+			}
+		}
+	}
+
+	.data-row{
+		display: grid;
+		grid-column-gap: 15px;
+		padding: 15px;
+		border-bottom: 2px solid $colour-borders;
+		&:last-child{
+			border-bottom: 0;
+			padding-bottom: 0;
+		}
+		span{
+			display: block;
+			position: relative;
+			font-size: 16px;
+			line-height: 1.1em;
+			&:last-child{
+				text-align: right;
+			}
+		}
+	}
+
+	&.table--bookings{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+	&.table--rooms{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 1fr 1fr 2fr;
+		}
+	}
+}
