@@ -49,10 +49,11 @@
 				<div class="card">
 					<div class="card__title">Bookings</div>
 					<p>To create a new Booking, first find the Customer account.</p>
-					<form>
+					<form class="process-form">
+						<input type="hidden" name="action" value="booking-search" />
 						<div class="form-group">
 							<label>Find Booking</label>
-							<input type="text" class="form-control" />
+							<input type="text" class="form-control" name="booking_id" />
 							<div class="form-error">
 								This is error text.
 							</div>
