@@ -1,0 +1,26 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "All Customers" %}
+{# set backLink = "/" #}
+
+{% block body %}
+<section>
+	<div class="container container--narrow">
+		<a href="/create-customer" class="button button--primary button--fw">Create a new Customer</a>
+		<div class="table table--customers mt-5">
+			<div class="head-row">
+				<span>Name</span>
+				<span>Email Address</span>
+				<span>Phone Number</span>
+			</div>
+			{% for customer in customers %}
+			<a class="link-row" href="/customers/{{customer.customer_id}}">
+				<span>{{customer.first_name}} {{customer.last_name}}</span>
+				<span>{{customer.email_address}}</span>
+				<span>{{customer.phone_number}}</span>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

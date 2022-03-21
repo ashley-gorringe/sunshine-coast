@@ -8,6 +8,10 @@ Route::add('/create-customer', function() {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/customer/create.php';
 });
 
+Route::add('/customers', function() {
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/customer/index.php';
+});
+
 Route::add('/customers/([0-9a-zA-Z]*)', function($id) {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/customer/single.php';
 });

@@ -93,4 +93,9 @@
 			grid-template-columns: 1fr 1fr 2fr;
 		}
 	}
+	&.table--customers{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
 }
