@@ -88,6 +88,11 @@
 			grid-template-columns: 1fr 1fr 1fr;
 		}
 	}
+	&.table--bookings-index{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 1fr 2fr 1fr 1fr;
+		}
+	}
 	&.table--rooms{
 		.head-row, .link-row, .data-row{
 			grid-template-columns: 1fr 1fr 2fr;

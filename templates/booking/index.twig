@@ -1,0 +1,27 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "All Bookings" %}
+{# set backLink = "/" #}
+
+{% block body %}
+<section>
+	<div class="container container--narrow">
+		<div class="table table--bookings-index">
+			<div class="head-row">
+				<span>Booking No.</span>
+				<span>Customer</span>
+				<span>Start Date</span>
+				<span>End Date</span>
+			</div>
+			{% for booking in bookings %}
+			<a class="link-row" href="/bookings/{{booking.booking_id}}">
+				<span>#{{booking.booking_id}}</span>
+				<span>{{booking.first_name}} {{booking.last_name}}</span>
+				<span>{{booking.start_date}}</span>
+				<span>{{booking.end_date}}</span>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}
