@@ -14,14 +14,14 @@ foreach ($_POST as $key => $value) {
 		}
 	}
 }
-if(!validateAlphabet($_POST['first_name'])){
+if(!validateBasicText($_POST['first_name'])){
 	$errorFields[] = array(
 		'field_name'=>'first_name',
 		'error_message'=>'Please enter a valid name.',
 	);
 	$submitValid = false;
 }
-if(!validateAlphabet($_POST['last_name'])){
+if(!validateBasicText($_POST['last_name'])){
 	$errorFields[] = array(
 		'field_name'=>'last_name',
 		'error_message'=>'Please enter a valid name.',
@@ -29,7 +29,7 @@ if(!validateAlphabet($_POST['last_name'])){
 	$submitValid = false;
 }
 if(!empty($_POST['business_name'])){
-	if(!validateAlphNum($_POST['business_name'])){
+	if(!validateBasicText($_POST['business_name'])){
 		$errorFields[] = array(
 			'field_name'=>'business_name',
 			'error_message'=>'Please enter a valid business name.',

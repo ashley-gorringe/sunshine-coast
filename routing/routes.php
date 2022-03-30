@@ -4,6 +4,10 @@ Route::add('/', function() {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/index.php';
 });
 
+Route::add('/admin-rooms', function() {
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/admin/rooms-index.php';
+});
+
 Route::add('/create-customer', function() {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/customer/create.php';
 });

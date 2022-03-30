@@ -1,0 +1,51 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "Administration - Rooms" %}
+{# set backLink = "/" #}
+
+{% block body %}
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div class="card">
+					<div class="card__title">Rooms</div>
+					<a href="/create-customer" class="button button--fw">Create a new Room</a>
+					<div class="table table--rooms mt-5">
+						<div class="head-row">
+							<span>Room No.</span>
+							<span>Room Type</span>
+							<span>Price Per Night</span>
+						</div>
+						{% for room in rooms %}
+						<a class="link-row" href="#">
+							<span>{{room.room_number}}</span>
+							<span>{{room.room_type}}</span>
+							<span>£{{room.room_price|number_format(2,'.')}}</span>
+						</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card">
+					<div class="card__title">Room Types</div>
+					<a href="/bookings" class="button button--fw">Create a new Room Type</a>
+					<div class="table table--rooms-types mt-5">
+						<div class="head-row">
+							<span>Room Type</span>
+							<span>Price Per Night</span>
+						</div>
+						{% for room_type in room_types %}
+						<a class="link-row" href="#">
+							<span>{{room_type.name}}</span>
+							<span>£{{room_type.per_night_price|number_format(2,'.')}}</span>
+						</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

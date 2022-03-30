@@ -39,6 +39,13 @@ function validateAlphabet($string){
 		return false;
 	}
 }
+function validateBasicText($string){
+	if(preg_match('/([a-z0-9 \-\'])\w+/i', $string)){
+  		return true;
+	}else{
+		return false;
+	}
+}
 function validatePhone($string){
 	if(preg_match('/0+(\d){10}/', $string)){
 		if(strlen($string) != 11){
@@ -79,6 +86,8 @@ function updateRoomsPrice($booking_id){
 			'[>]room_type'=>'room_type_id',
 		],[
 			'room_type.per_night_price [Int]',
+		],[
+			'room.room_id'=>$room,
 		]);
 
 		$rooms_price = $rooms_price + $room_price['per_night_price'];

@@ -103,4 +103,9 @@
 			grid-template-columns: 1fr 1fr 1fr;
 		}
 	}
+	&.table--rooms-types{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 2fr 1fr;
+		}
+	}
 }
