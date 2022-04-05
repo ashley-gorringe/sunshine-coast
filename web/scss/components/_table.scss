@@ -14,6 +14,7 @@
 			font-size: 16px;
 			line-height: 1.1em;
 			font-weight: bold;
+			min-width: 0;
 			&:last-child{
 				text-align: right;
 			}
@@ -57,6 +58,7 @@
 			position: relative;
 			font-size: 16px;
 			line-height: 1.1em;
+			min-width: 0;
 			&:last-child{
 				text-align: right;
 			}
@@ -77,6 +79,7 @@
 			position: relative;
 			font-size: 16px;
 			line-height: 1.1em;
+			min-width: 0;
 			&:last-child{
 				text-align: right;
 			}
@@ -106,6 +109,20 @@
 	&.table--rooms-types{
 		.head-row, .link-row, .data-row{
 			grid-template-columns: 2fr 1fr;
+		}
+	}
+	&.table--booking-extras{
+		.head-row, .link-row, .data-row{
+			grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+			span{
+				text-align: center;
+				&:last-child{
+					text-align: right;
+				}
+				&:first-child{
+					text-align: left;
+				}
+			}
 		}
 	}
 }

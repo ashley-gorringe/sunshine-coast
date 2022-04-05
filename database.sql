@@ -13,6 +13,14 @@ CREATE TABLE booking (
   customer_id int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE booking_extra (
+  booking_extra_id int(11) NOT NULL,
+  purchase_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  quantity int(3) NOT NULL DEFAULT '1',
+  extra_id int(11) NOT NULL,
+  booking_id int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE booking_room (
   booking_room_id int(11) NOT NULL,
   booking_id int(11) NOT NULL,
@@ -32,6 +40,19 @@ CREATE TABLE customer (
   town_city tinytext NOT NULL,
   post_code varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE extra (
+  extra_id int(11) NOT NULL,
+  name tinytext NOT NULL,
+  price int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO extra (extra_id, name, price) VALUES
+(1, 'Traditional Breakfast', 1000),
+(2, 'Continental Breakfast', 500),
+(3, 'Evening Meal', 2500),
+(4, 'Range of Bar Snacks', 1500),
+(5, 'Room Service Meal', 3000);
 
 CREATE TABLE room (
   room_id int(11) NOT NULL,
@@ -61,14 +82,19 @@ CREATE TABLE room_type (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO room_type (room_type_id, name, per_night_price) VALUES
-(1, 'Single', 8500),
-(2, 'Double', 13500),
-(3, 'Suite', 22000);
+(1, 'Single', 4000),
+(2, 'Double', 5200),
+(3, 'Suite', 9500);
 
 
 ALTER TABLE booking
   ADD PRIMARY KEY (booking_id),
   ADD KEY fk_booking_customer (customer_id) USING BTREE;
+
+ALTER TABLE booking_extra
+  ADD PRIMARY KEY (booking_extra_id),
+  ADD KEY fk_extra (extra_id),
+  ADD KEY fl_booking (booking_id);
 
 ALTER TABLE booking_room
   ADD PRIMARY KEY (booking_room_id),
@@ -77,6 +103,9 @@ ALTER TABLE booking_room
 
 ALTER TABLE customer
   ADD PRIMARY KEY (customer_id);
+
+ALTER TABLE extra
+  ADD PRIMARY KEY (extra_id);
 
 ALTER TABLE room
   ADD PRIMARY KEY (room_id),
@@ -89,11 +118,17 @@ ALTER TABLE room_type
 ALTER TABLE booking
   MODIFY booking_id int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE booking_extra
+  MODIFY booking_extra_id int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE booking_room
   MODIFY booking_room_id int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE customer
   MODIFY customer_id int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE extra
+  MODIFY extra_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 ALTER TABLE room
   MODIFY room_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
@@ -104,6 +139,10 @@ ALTER TABLE room_type
 
 ALTER TABLE booking
   ADD CONSTRAINT booking_ibfk_1 FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
+
+ALTER TABLE booking_extra
+  ADD CONSTRAINT booking_extra_ibfk_1 FOREIGN KEY (booking_id) REFERENCES booking (booking_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT booking_extra_ibfk_2 FOREIGN KEY (extra_id) REFERENCES extra (extra_id);
 
 ALTER TABLE booking_room
   ADD CONSTRAINT booking_room_ibfk_1 FOREIGN KEY (booking_id) REFERENCES booking (booking_id) ON DELETE CASCADE ON UPDATE CASCADE,

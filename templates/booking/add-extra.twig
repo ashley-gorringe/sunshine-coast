@@ -1,0 +1,59 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "Booking - " ~ customer.first_name ~ " " ~ customer.last_name ~ " - #" ~ booking.booking_id ~ " - Add Extra" %}
+{% set backLink = "/bookings/"~ booking.booking_id %}
+
+{% block body %}
+<section>
+	<div class="container container--narrow">
+		<form class="process-form">
+			<input type="hidden" name="action" value="booking-add-extra" />
+			<input type="hidden" name="booking_id" value="{{booking.booking_id}}" />
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Purchase Date</label>
+						<input id="purchaseDate" type="text" class="form-control" name="purchase_date" />
+						<div class="form-error">
+							This is error text.
+						</div>
+						<div class="form-help">
+							When was the item purchased?
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label>Select Item</label>
+						<select class="form-control" name="item">
+							<option value="">Please Select</option>
+							{% for extra in extras %}
+							<option value="{{extra.extra_id}}">{{extra.name}} - £{{extra.price|number_format(2,'.')}}</option>
+							{% endfor %}
+						</select>
+						<div class="form-error">
+							This is error text.
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Quantity</label>
+						<input type="number" class="form-control" name="quantity" value="1" min="1" max="99" />
+						<div class="form-error">
+							This is error text.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col">
+					<button class="button button--primary button--fw" type="submit">Add Extra</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

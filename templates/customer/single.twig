@@ -99,6 +99,9 @@
 				<div class="card">
 					<div class="card__title">Bookings</div>
 					<a href="/customers/{{customer.customer_id}}/create-booking" class="button button--primary button--fw">Create a Booking</a>
+					{% if not bookings_upc and not bookings_cur and not bookings_pas %}
+					<p class="text-center mt-5">There are currently no bookings for this customer.</p>
+					{% endif %}
 					{% if bookings_upc %}
 					<h4 class="text-center mt-5">Upcoming</h4>
 					<div class="table table--bookings mt-3">

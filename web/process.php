@@ -32,6 +32,9 @@ if(empty($_POST['action'])){
 		case 'booking-search':
 			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/booking-search.php';
 			break;
+		case 'booking-add-extra':
+			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/booking-add-extra.php';
+			break;
 
 		default:
 		$response->status = 'error';

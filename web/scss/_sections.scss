@@ -4,5 +4,9 @@ section{
 	position: relative;
 	&.divider{
 		border-top: 2px solid $colour-borders;
+		padding-top: 100px;
+	}
+	+section{
+		padding-top: 0;
 	}
 }

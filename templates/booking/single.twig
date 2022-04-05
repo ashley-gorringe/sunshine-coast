@@ -85,8 +85,29 @@
 			<div class="col-12 col-lg-6">
 				<div class="card">
 					<div class="card__title">Extras</div>
-					<a href="#" class="button button--primary button--fw">Add an Extra</a>
+					<a href="/bookings/{{booking.booking_id}}/add-extra" class="button button--primary button--fw">Add an Extra</a>
+					{% if extras %}
+					<div class="table table--booking-extras mt-5">
+						<div class="head-row">
+							<span>Item</span>
+							<span>Price</span>
+							<span>Date & Time</span>
+							<span>Quantity</span>
+							<span>Total</span>
+						</div>
+						{% for extra in extras %}
+						<div class="data-row">
+							<span>{{extra.name}}</span>
+							<span>£{{extra.price|number_format(2,'.')}}</span>
+							<span>{{extra.purchase_date}}</span>
+							<span>{{extra.quantity}}</span>
+							<span>£{{extra.line_price|number_format(2,'.')}}</span>
+						</div>
+						{% endfor %}
+					</div>
+					{% else %}
 					<p class="mt-5 text-center">There are currently no extras on this booking.</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>

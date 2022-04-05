@@ -1,7 +1,7 @@
 $("#startDate").flatpickr({
 	minDate: "today",
 	altInput: true,
-    altFormat: "F j, Y",
+    altFormat: "F j Y",
     dateFormat: "Y-m-d",
 });
 $("#startDate").on('change',function(event){
@@ -16,9 +16,17 @@ $("#startDate").on('change',function(event){
 	$("#endDate").flatpickr({
 		minDate: minEndDate,
 		altInput: true,
-    	altFormat: "F j, Y",
+    	altFormat: "F j Y",
     	dateFormat: "Y-m-d",
 	});
+});
+
+$("#purchaseDate").flatpickr({
+	enableTime: true,
+	altInput: true,
+    altFormat: "F j Y - H:i",
+    dateFormat: "Y-m-d H:i",
+	defaultDate: moment().format('YYYY-MM-DD HH:mm'),
 });
 
 $( document ).on('submit','.process-form',function(event){

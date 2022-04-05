@@ -107,6 +107,31 @@ function updateRoomsPrice($booking_id){
 	]);
 }
 
+function updateExtrasPrice($booking_id){
+	$booking_extras = $GLOBALS['database']->select('booking_extra',[
+		'[>]extra'=>'extra_id',
+	],[
+		'booking_extra.booking_extra_id',
+		'booking_extra.quantity [Int]',
+		'extra.price [Int]',
+	],[
+		'booking_extra.booking_id' => $booking_id,
+	]);
+
+	$extras_price = 0;
+
+	foreach ($booking_extras as $key => $extra) {
+		$line_total = $extra['price'] * $extra['quantity'];
+		$extras_price = $extras_price + $line_total;
+	}
+
+	$GLOBALS['database']->update('booking',[
+		'extras_price'=>$extras_price,
+	],[
+		'booking_id'=>$booking_id,
+	]);
+}
+
 function updateTotalPrice($booking_id){
 	$booking = $GLOBALS['database']->get('booking',[
 		'extras_price [Int]',

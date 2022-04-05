@@ -32,6 +32,10 @@ Route::add('/bookings/([0-9a-zA-Z]*)', function($id) {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/single.php';
 });
 
+Route::add('/bookings/([0-9a-zA-Z]*)/add-extra', function($id) {
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/add-extra.php';
+});
+
 Route::add('/rooms.json', function() {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/api/rooms.php';
 });
