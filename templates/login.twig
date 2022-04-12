@@ -1,0 +1,31 @@
+{% extends "_base-login.twig" %}
+
+{% set pageTitle = "Log in" %}
+{# set backLink = "/" #}
+
+{% block body %}
+<section>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-6">
+				<form class="process-form mt-5">
+					<input type="hidden" name="action" value="system-login" />
+					<div class="form-group">
+						<label>System Password</label>
+						<input type="password" class="form-control" name="password" autofocus />
+						<div class="form-error">
+							This is error text.
+						</div>
+						<div class="form-help">
+							Enter the system password to continue.
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="button button--primary" type="submit">Log in</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

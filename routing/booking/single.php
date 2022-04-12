@@ -39,6 +39,9 @@ $extras = $GLOBALS['database']->select('booking_extra',[
 	'extra.price [Int]',
 ],[
 	'booking_extra.booking_id' => $id,
+	'ORDER'=>[
+		'booking_extra.purchase_date'=>'DESC',
+	],
 ]);
 
 foreach ($extras as $key => $extra) {

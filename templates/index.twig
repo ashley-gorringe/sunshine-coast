@@ -7,17 +7,11 @@
 <section>
 	<div class="container">
 		<div class="row">
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-4">
 				<div class="card">
 					<div class="card__title">Customer</div>
-					<div class="row">
-						<div class="col-12 col-lg-6">
-							<a href="/create-customer" class="button button--primary button--fw">Create a new Customer</a>
-						</div>
-						<div class="col-12 col-lg-6">
-							<a href="/customers" class="button button--fw">View all Customers</a>
-						</div>
-					</div>
+					<a href="/create-customer" class="button button--primary button--fw">Create a new Customer</a>
+					<a href="/customers" class="button button--fw mt-2">View all Customers</a>
 					<form class="process-form mt-5">
 						<input type="hidden" name="action" value="customer-search-email" />
 						<div class="form-group">
@@ -52,7 +46,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-4">
 				<div class="card">
 					<div class="card__title">Bookings</div>
 					<a href="/bookings" class="button button--fw">View all Bookings</a>
@@ -75,17 +69,12 @@
 					</form>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
-<section class="divider">
-	<div class="container">
-		<div class="row">
 			<div class="col-12 col-lg-4">
 				<div class="card">
 					<div class="card__title">Administration</div>
 					<a href="/admin-rooms" class="button button--fw">Manage Rooms</a>
 					<a href="#" class="button button--fw mt-2">Manage Extras</a>
+					<a download href="/export.json" class="button button--fw mt-2">Data Export</a>
 				</div>
 			</div>
 		</div>

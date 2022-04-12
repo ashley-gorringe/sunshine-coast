@@ -16,6 +16,10 @@ if(empty($_POST['action'])){
     exit;
 }else{
 	switch($_POST['action']){
+		case 'system-login':
+			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/system-login.php';
+			break;
+
 		case 'customer-create':
 			include dirname($_SERVER['DOCUMENT_ROOT']).'/processes/customer-create.php';
 			break;

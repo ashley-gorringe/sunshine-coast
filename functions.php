@@ -1,4 +1,12 @@
 <?php
+function checkAuth(){
+	if($_SESSION['logged_in']){
+		return true;
+	}else{
+		header('Location: /login');
+	}
+}
+
 function randomString($length){
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
