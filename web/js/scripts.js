@@ -97,13 +97,80 @@ $('#addRoom').click(function(event){
 		});
 
 		$('#rooms').append(`
-			<div class="form-group">
-				<label>Select Room</label>
-				<select class="form-control" name="rooms[]">
-				<option value="">Please Select</option>
-				`+items+`
-				</select>
+			<div class="row mt-3">
+				<div class="col-9">
+					<div class="form-group">
+						<label>Select Room</label>
+						<select class="form-control" name="rooms[]">
+						<option value="">Please Select</option>
+						`+items+`
+						</select>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="form-group">
+						<label>No. of People</label>
+						<input class="form-control" name="people[]" type="number" value="1" min="1" max="6" />
+					</div>
+				</div>
 			</div>
 			`);
+	});
+});
+
+$('#bookingPay').click(function(event){
+	event.preventDefault();
+	alert('Pay');
+});
+
+function deleteBooking(booking_id){
+	$.ajax({
+        type: "POST",
+        url: '/process.php',
+        data: "action=booking-delete&booking="+booking_id,
+        dataType: 'json',
+        success: function(response){
+            console.log(response);
+            if(response.status == 'error'){
+				swal({
+					title: "Hold up!",
+					text: response.message,
+					icon: "error",
+				});
+            }else if(response.status == 'success'){
+                window.location.href = response.successRedirect;
+            }
+        }
+    });
+}
+
+$('#bookingCancel').click(function(event){
+	event.preventDefault();
+	var booking_id = $('#bookingCancel').data('booking');
+	swal({
+		icon: "warning",
+		title: "Are you sure?",
+		text: "Once canceled, you will not be able to recover this booking.",
+		buttons: true,
+		dangerMode: true,
+	}).then((willDelete) => {
+		if (willDelete) {
+			deleteBooking(booking_id);
+		}
+	});
+});
+$('#bookingDelete').click(function(event){
+	event.preventDefault();
+	var booking_id = $('#bookingCancel').data('booking');
+	swal({
+		icon: "warning",
+		title: "Are you sure?",
+		text: "Once deleted, you will not be able to recover this booking.",
+		buttons: true,
+		dangerMode: true,
+	}).then((willDelete) => {
+		if (willDelete) {
+			deleteBooking(booking_id);
+		}
 	});
 });

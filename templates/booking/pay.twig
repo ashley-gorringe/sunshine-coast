@@ -1,0 +1,35 @@
+{% extends "_base.twig" %}
+
+{% set pageTitle = "Booking - " ~ customer.first_name ~ " " ~ customer.last_name ~ " - #" ~ booking.booking_id ~ " - Mark as Paid" %}
+{% set backLink = "/bookings/"~ booking.booking_id %}
+
+{% block body %}
+<section>
+	<div class="container container--narrow">
+		<form class="process-form">
+			<input type="hidden" name="action" value="booking-pay" />
+			<input type="hidden" name="booking_id" value="{{booking.booking_id}}" />
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Payment Date</label>
+						<input id="purchaseDate" type="text" class="form-control" name="payment_date" />
+						<div class="form-error">
+							This is error text.
+						</div>
+						<div class="form-help">
+							When was the booking paid for?
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col">
+					<button class="button button--primary button--fw" type="submit">Mark as Paid</button>
+					<a href="/bookings/{{booking.booking_id}}" class="button button--fw mt-2">Cancel</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

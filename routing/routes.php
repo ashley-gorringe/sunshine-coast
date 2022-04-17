@@ -14,6 +14,11 @@ Route::add('/admin-rooms', function() {
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/admin/rooms-index.php';
 });
 
+Route::add('/monthly-income', function() {
+	checkAuth();
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/admin/monthly-income.php';
+});
+
 Route::add('/create-customer', function() {
 	checkAuth();
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/customer/create.php';
@@ -47,6 +52,16 @@ Route::add('/bookings/([0-9a-zA-Z]*)', function($id) {
 Route::add('/bookings/([0-9a-zA-Z]*)/add-extra', function($id) {
 	checkAuth();
 	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/add-extra.php';
+});
+
+Route::add('/bookings/([0-9a-zA-Z]*)/pay', function($id) {
+	checkAuth();
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/pay.php';
+});
+
+Route::add('/bookings/([0-9a-zA-Z]*)/invoice', function($id) {
+	checkAuth();
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/routing/booking/invoice.php';
 });
 
 Route::add('/export.json', function() {

@@ -14,20 +14,11 @@
         <title>SC Hotel Database - {{pageTitle}}</title>
 	</head>
 	<body>
-		<nav class="navbar">
-			<div class="navbar__structure">
-				<div class="navbar__logo">
-					<a href="/">
-					<img src="/assets/logo.svg" alt="Sunshine Coast Logo." />
-					</a>
-				</div>
-				<div class="navbar__info">
-					<span>{{pageTitle}}</span>
-				</div>
-				<div class="navbar__actions">
-				</div>
+		<section class="pt-5 pb-0">
+			<div class="container text-center">
+				<img src="/assets/logo.svg" alt="Sunshine Coast Logo." style="height:60px;" />
 			</div>
-		</nav>
+		</section>
     	{% block body %}{% endblock %}
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/moment.min.js"></script>

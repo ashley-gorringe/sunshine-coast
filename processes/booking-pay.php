@@ -1,5 +1,5 @@
 <?php
-if(empty($_POST['customer_id'])){
+if(empty($_POST['booking_id'])){
 	$response->status = 'error';
 	$response->message = 'An error has occured.';
 	$response->post = $_POST;
@@ -7,7 +7,7 @@ if(empty($_POST['customer_id'])){
 	exit;
 }
 
-$requiredFields = array('start_date','end_date','rooms[]','people[]');
+$requiredFields = array('payment_date');
 $submitValid = true;
 foreach ($_POST as $key => $value) {
 	if(in_array($key,$requiredFields)){
@@ -29,24 +29,14 @@ if(!$submitValid){
 	echo json_encode($response);
 	exit;
 }else{
+	$booking_id = $_POST['booking_id'];
 	try{
-		$database->insert('booking',[
-			'customer_id'=>$_POST['customer_id'],
-			'start_date'=>$_POST['start_date'],
-			'end_date'=>$_POST['end_date'],
+		$database->update('booking',[
+			'paid_date'=>$_POST['payment_date'],
+			'paid'=>1,
+		],[
+			'booking_id'=>$booking_id
 		]);
-		$booking_id = $database->id();
-
-		foreach ($_POST['rooms'] as $key => $room) {
-			$database->insert('booking_room',[
-				'people'=>$_POST['people'][$key],
-				'booking_id'=>$booking_id,
-				'room_id'=>$room,
-			]);
-		}
-
-		updateRoomsPrice($booking_id);
-		updateTotalPrice($booking_id);
 
 		$response->status = 'success';
 		$response->successRedirect = '/bookings/'.$booking_id;

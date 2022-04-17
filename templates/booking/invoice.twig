@@ -1,0 +1,143 @@
+{% extends "_base-invoice.twig" %}
+
+{% set pageTitle = "Booking - " ~ customer.first_name ~ " " ~ customer.last_name ~ " - #" ~ booking.booking_id %}
+
+{% block body %}
+<section class="pt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-6">
+				<div class="card">
+					<div class="card__title">Customer</div>
+					<div class="form-group">
+						<label>Customer ID</label>
+						<div class="form-readout">
+							{{customer.customer_id}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Name</label>
+						<div class="form-readout">
+							{{customer.first_name}} {{customer.last_name}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<div class="form-readout">
+							{{customer.address_line_1}},{% if customer.address_line_2 %} {{customer.address_line_2}},{% endif %} {{customer.town_city}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Postcode</label>
+						<div class="form-readout">
+							{{customer.post_code}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card">
+					<div class="card__title">Booking</div>
+					<div class="form-group">
+						<label>Arrival Date</label>
+						<div class="form-readout">
+							{{booking.start_date}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Departure Date</label>
+						<div class="form-readout">
+							{{booking.end_date}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Number of Nights</label>
+						<div class="form-readout">
+							{{booking.nights}}
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Number of People</label>
+						<div class="form-readout">
+							{{booking.people}}
+						</div>
+					</div>
+					<div class="form-group mt-5">
+						<div class="table table--rooms">
+							<div class="head-row">
+								<span>Room No.</span>
+								<span>Room Type</span>
+								<span>People</span>
+								<span>Price Per Night</span>
+							</div>
+							{% for room in rooms %}
+							<div class="data-row">
+								<span>{{room.room_number}}</span>
+								<span>{{room.room_type}}</span>
+								<span>{{room.room_people}}</span>
+								<span>£{{room.room_price|number_format(2,'.')}}</span>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div class="col-12">
+				<div class="card">
+					<div class="card__title">Extras</div>
+					{% if extras %}
+					<div class="table table--booking-extras mt-5">
+						<div class="head-row">
+							<span>Item</span>
+							<span>Price</span>
+							<span>Date & Time</span>
+							<span>Quantity</span>
+							<span>Total</span>
+						</div>
+						{% for extra in extras %}
+						<div class="data-row">
+							<span>{{extra.name}}</span>
+							<span>£{{extra.price|number_format(2,'.')}}</span>
+							<span>{{extra.purchase_date}}</span>
+							<span>{{extra.quantity}}</span>
+							<span>£{{extra.line_price|number_format(2,'.')}}</span>
+						</div>
+						{% endfor %}
+					</div>
+					{% else %}
+					<p class="mt-5 text-center">There are no extras on this booking.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="row mt-4  justify-content-end">
+			<div class="col-12 col-lg-4">
+				<div class="form-group">
+					<label>Rooms Price</label>
+					<div class="form-readout">
+						£{{booking.rooms_price|number_format(2,'.')}}
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Extras Price</label>
+					<div class="form-readout">
+						£{{booking.extras_price|number_format(2,'.')}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-4  justify-content-end">
+			<div class="col-12 col-lg-4">
+				<div class="form-group">
+					<label>Total Price</label>
+					<div class="form-readout">
+						£{{booking.total_price|number_format(2,'.')}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

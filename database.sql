@@ -9,6 +9,7 @@ CREATE TABLE booking (
   extras_price int(11) NOT NULL DEFAULT '0',
   rooms_price int(11) NOT NULL DEFAULT '0',
   total_price int(11) NOT NULL DEFAULT '0',
+  paid int(1) NOT NULL DEFAULT '0',
   paid_date datetime NOT NULL,
   customer_id int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -23,6 +24,7 @@ CREATE TABLE booking_extra (
 
 CREATE TABLE booking_room (
   booking_room_id int(11) NOT NULL,
+  people int(2) NOT NULL DEFAULT '1',
   booking_id int(11) NOT NULL,
   room_id int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

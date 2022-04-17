@@ -4,8 +4,36 @@
 {% set backLink = "/customers/"~ customer.customer_id %}
 
 {% block body %}
-<section>
+<section class="py-4">
 	<div class="container">
+		<div class="row">
+			<div class="col-6">
+				{% if booking.tense == "past" %}
+				{% if not booking.paid %}
+				<a href="/bookings/{{booking.booking_id}}/pay" class="button button--primary me-2">Mark as Paid</a>
+				{% endif %}
+				<a href="#" class="button" id="bookingDelete" data-booking="{{booking.booking_id}}">Delete Booking</a>
+				{% else %}
+				<a href="#" class="button" id="bookingCancel" data-booking="{{booking.booking_id}}">Cancel Booking</a>
+				{% endif %}
+			</div>
+			<div class="col-6 text-end">
+				<a href="/bookings/{{booking.booking_id}}/invoice" target="_blank" class="button">View Invoice</a>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="divider">
+	<div class="container">
+		{% if booking.paid %}
+		<div class="row mb-5">
+			<div class="col-12">
+				<div style="background: #8FFFA9;padding:30px;border-radius:5px">
+					<p class="m-0 text-center">This booking has been paid for.</p>
+				</div>
+			</div>
+		</div>
+		{% endif %}
 		<div class="row">
 			<div class="col-12 col-lg-6">
 				<div class="row">
@@ -42,12 +70,14 @@
 								<div class="head-row">
 									<span>Room No.</span>
 									<span>Room Type</span>
+									<span>People</span>
 									<span>Price Per Night</span>
 								</div>
 								{% for room in rooms %}
 								<div class="data-row">
 									<span>{{room.room_number}}</span>
 									<span>{{room.room_type}}</span>
+									<span>{{room.room_people}}</span>
 									<span>£{{room.room_price|number_format(2,'.')}}</span>
 								</div>
 								{% endfor %}
@@ -85,7 +115,9 @@
 			<div class="col-12 col-lg-6">
 				<div class="card">
 					<div class="card__title">Extras</div>
+					{% if not booking.paid %}
 					<a href="/bookings/{{booking.booking_id}}/add-extra" class="button button--primary button--fw">Add an Extra</a>
+					{% endif %}
 					{% if extras %}
 					<div class="table table--booking-extras mt-5">
 						<div class="head-row">

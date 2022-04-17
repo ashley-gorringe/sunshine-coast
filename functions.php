@@ -55,18 +55,14 @@ function validateBasicText($string){
 	}
 }
 function validatePhone($string){
-	if(preg_match('/0+(\d){10}/', $string)){
-		if(strlen($string) != 11){
-			return false;
-		}else{
-			return true;
-		}
+	if(preg_match('/^0+(\d){10}$/', $string)){
+		return true;
 	}else{
 		return false;
 	}
 }
 function validatePostcode($string){
-	if(preg_match('/\b(GIR ?0AA|SAN ?TA1|(?:[A-PR-UWYZ](?:\d{0,2}|[A-HK-Y]\d|[A-HK-Y]\d\d|\d[A-HJKSTUW]|[A-HK-Y]\d[ABEHMNPRV-Y])) ?\d[ABD-HJLNP-UW-Z]{2})\b/i', $string)){
+	if(preg_match('/^\b(GIR ?0AA|SAN ?TA1|(?:[A-PR-UWYZ](?:\d{0,2}|[A-HK-Y]\d|[A-HK-Y]\d\d|\d[A-HJKSTUW]|[A-HK-Y]\d[ABEHMNPRV-Y])) ?\d[ABD-HJLNP-UW-Z]{2})\b$/i', $string)){
 		return true;
 	}else{
 		return false;
